@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แจ้งเหตุฉุกเฉิน - ห้องพิจารณาคดี</title>
+    <style>
+        body { font-family: Tahoma, sans-serif; text-align: center; padding: 20px; background-color: #f4f4f9; }
+        .btn { width: 100%; max-width: 400px; padding: 25px; margin: 10px 0; font-size: 22px; font-weight: bold; border-radius: 12px; border: none; cursor: pointer; color: white; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .red { background-color: #e74c3c; }
+        .yellow { background-color: #f39c12; }
+        .blue { background-color: #3498db; }
+        select { padding: 12px; font-size: 20px; margin-bottom: 20px; width: 100%; max-width: 400px; border-radius: 8px; }
+    </style>
+</head>
+<body>
+    <h2>🚨 ปุ่มแจ้งเหตุฉุกเฉิน (หน้าห้องพิจารณาคดี)</h2>
+    <label><b>เลือกห้องพิจารณาคดี:</b></label><br>
+    <select id="roomSelect">
+        <option value="ห้องพิจารณาคดี 701">ห้องพิจารณาคดี 701</option>
+        <option value="ห้องพิจารณาคดี 702">ห้องพิจารณาคดี 702</option>
+        <option value="ห้องพิจารณาคดี 801">ห้องพิจารณาคดี 801</option>
+    </select>
+    <hr style="max-width: 400px;">
+    <button class="btn red" onclick="sendAlert('🔴 เหตุด่วน / ทำร้ายร่างกาย')">🔴 ทำร้ายร่างกาย / ทะเลาะวิวาท</button><br>
+    <button class="btn yellow" onclick="sendAlert('🟡 จำเลยพยายามหลบหนี')">🟡 จำเลยพยายามหลบหนี</button><br>
+    <button class="btn blue" onclick="sendAlert('🔵 ต้องการกำลังเสริมด่วน')">🔵 ต้องการกำลังเสริม</button>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+        function sendAlert(eventType) {
+            const room = document.getElementById('roomSelect').value;
+            if(confirm(`ยืนยันการแจ้งเหตุ?\n${room}\n${eventType}`)) {
+                socket.emit('send-alert', { room, eventType });
+                alert('ส่งสัญญาณแจ้งเหตุไปยังศูนย์ควบคุมแล้ว');
+            }
+        }
+    </script>
+</body>
+</html>
