@@ -6,8 +6,8 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
-// ลิงก์ตราสัญลักษณ์เจ้าพนักงานตำรวจศาล (สาธารณะ)
-const bgImageUrl = 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Emblem_of_the_Court_Officer_of_Thailand.svg/800px-Emblem_of_the_Court_Officer_of_Thailand.svg.png';
+// ดึงรูปตราสัญลักษณ์จาก GitHub ของคุณโดยตรง
+const bgImageUrl = 'https://raw.githubusercontent.com/domdanu151-cmyk/court-alert/main/logo.jpg';
 
 // หน้าแจ้งเหตุ (Sender)
 app.get('/', (req, res) => {
@@ -25,9 +25,9 @@ app.get('/', (req, res) => {
             padding: 20px; 
             margin: 0;
             background-color: #f1f5f9;
-            background-image: linear-gradient(rgba(241, 245, 249, 0.85), rgba(241, 245, 249, 0.85)), url('${bgImageUrl}');
+            background-image: linear-gradient(rgba(241, 245, 249, 0.88), rgba(241, 245, 249, 0.88)), url('${bgImageUrl}');
             background-repeat: no-repeat;
-            background-position: center 120px;
+            background-position: center 130px;
             background-size: 320px auto;
             background-attachment: fixed;
         }
@@ -40,7 +40,7 @@ app.get('/', (req, res) => {
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             backdrop-filter: blur(5px);
         }
-        .logo { width: 100px; height: auto; margin-bottom: 10px; }
+        .logo { width: 110px; height: auto; margin-bottom: 10px; }
         .btn { width: 100%; padding: 20px; margin: 8px 0; font-size: 20px; font-weight: bold; border-radius: 12px; border: none; cursor: pointer; color: white; }
         .red { background-color: #dc2626; }
         .yellow { background-color: #d97706; }
@@ -51,7 +51,7 @@ app.get('/', (req, res) => {
 </head>
 <body>
     <div class="container">
-        <img src="${bgImageUrl}" class="logo" alt="ตราตำรวจศาล">
+        <img src="${bgImageUrl}" class="logo" alt="ตราตำรวจศาล"><br>
         <h2>🚨 แจ้งเหตุฉุกเฉิน</h2>
         <label><b>เลือกห้องพิจารณาคดี:</b></label><br><br>
         <select id="roomSelect">
@@ -97,14 +97,14 @@ app.get('/dashboard', (req, res) => {
             padding: 20px; 
             text-align: center; 
             margin: 0;
-            background-image: linear-gradient(rgba(15, 23, 42, 0.88), rgba(15, 23, 42, 0.88)), url('${bgImageUrl}');
+            background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('${bgImageUrl}');
             background-repeat: no-repeat;
             background-position: center center;
-            background-size: 500px auto;
+            background-size: 450px auto;
             background-attachment: fixed;
         }
         .header-box {
-            background: rgba(30, 41, 59, 0.8);
+            background: rgba(30, 41, 59, 0.85);
             padding: 20px;
             border-radius: 16px;
             margin-bottom: 20px;
@@ -113,7 +113,7 @@ app.get('/dashboard', (req, res) => {
             max-width: 800px;
             margin: 0 auto 20px auto;
         }
-        .logo-dash { height: 90px; width: auto; margin-bottom: 10px; }
+        .logo-dash { height: 110px; width: auto; margin-bottom: 10px; }
         .alert-box { 
             background-color: #dc2626; 
             padding: 40px; 
